@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoFiss - Nourish The Goodness</title>
+
+<title>SoFiss | Nourish The Goodness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:Arial;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
 background:#fafafa;
+color:#222;
 }
 
 header{
@@ -19,71 +29,83 @@ justify-content:space-between;
 align-items:center;
 padding:20px 60px;
 background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.05);
+box-shadow:0 4px 20px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
 font-size:26px;
-font-weight:bold;
+font-weight:600;
 color:#14532d;
 }
 
+nav a{
+margin:0 15px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
 .cart{
-font-size:18px;
 cursor:pointer;
+font-weight:600;
 }
 
 .hero{
-height:70vh;
-background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),
-url('https://images.unsplash.com/photo-1604908176997-4317a8c7d0cb');
+height:80vh;
+background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+url("https://images.unsplash.com/photo-1604908176997-4317a8c7d0cb");
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
 justify-content:center;
-color:white;
 text-align:center;
+color:white;
 }
 
 .hero h1{
-font-size:50px;
-margin:0;
+font-size:60px;
+letter-spacing:2px;
 }
 
 .hero p{
-font-size:20px;
+font-size:22px;
+margin-top:10px;
 }
 
 .products{
-padding:60px;
+padding:80px 60px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+gap:40px;
 }
 
 .card{
 background:white;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 padding:20px;
 text-align:center;
-transition:0.3s;
+transition:0.4s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-10px);
 }
 
 .card img{
 width:100%;
-border-radius:10px;
+border-radius:12px;
 }
 
 .price{
 font-size:20px;
-font-weight:bold;
 margin:10px 0;
+font-weight:600;
+color:#14532d;
 }
 
 button{
@@ -91,47 +113,67 @@ background:#14532d;
 color:white;
 border:none;
 padding:12px 20px;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
+font-weight:500;
 }
 
 button:hover{
-background:#166534;
+background:#0f3d21;
 }
 
-.cart-popup{
+.cart-panel{
 position:fixed;
-right:0;
+right:-350px;
 top:0;
-width:320px;
+width:350px;
 height:100%;
 background:white;
 box-shadow:-5px 0 20px rgba(0,0,0,0.1);
-padding:20px;
-display:none;
+padding:30px;
+transition:0.4s;
+display:flex;
 flex-direction:column;
+}
+
+.cart-panel.active{
+right:0;
 }
 
 .cart-item{
 display:flex;
 justify-content:space-between;
-margin-bottom:15px;
+margin:15px 0;
+font-size:15px;
 }
 
 .checkout{
 margin-top:auto;
 }
 
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+font-weight:600;
+text-decoration:none;
+}
+
 footer{
-text-align:center;
-padding:30px;
+margin-top:80px;
+padding:40px;
 background:#14532d;
 color:white;
-margin-top:50px;
+text-align:center;
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -139,11 +181,18 @@ margin-top:50px;
 
 <div class="logo">SoFiss</div>
 
+<nav>
+<a href="#">Home</a>
+<a href="#">Products</a>
+<a href="#">About</a>
+</nav>
+
 <div class="cart" onclick="toggleCart()">
 Cart (<span id="cart-count">0</span>)
 </div>
 
 </header>
+
 
 <section class="hero">
 
@@ -181,11 +230,11 @@ Cart (<span id="cart-count">0</span>)
 </section>
 
 
-<div class="cart-popup" id="cart">
+<div class="cart-panel" id="cartPanel">
 
 <h2>Your Cart</h2>
 
-<div id="cart-items"></div>
+<div id="cartItems"></div>
 
 <div class="checkout">
 <button onclick="checkout()">Checkout</button>
@@ -194,25 +243,30 @@ Cart (<span id="cart-count">0</span>)
 </div>
 
 
+<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">
+Order on WhatsApp
+</a>
+
+
 <footer>
 
-<p>© 2026 SoFiss — Premium Dry Fruits</p>
+<p>© 2026 SoFiss Premium Dry Fruits</p>
 
 </footer>
+
 
 
 <script>
 
 let cart=[]
-let cartCount=0
+let count=0
 
 function addToCart(name,price){
 
 cart.push({name,price})
+count++
 
-cartCount++
-
-document.getElementById("cart-count").innerText=cartCount
+document.getElementById("cart-count").innerText=count
 
 renderCart()
 
@@ -220,7 +274,7 @@ renderCart()
 
 function renderCart(){
 
-let items=document.getElementById("cart-items")
+let items=document.getElementById("cartItems")
 
 items.innerHTML=""
 
@@ -246,9 +300,9 @@ function removeItem(index){
 
 cart.splice(index,1)
 
-cartCount--
+count--
 
-document.getElementById("cart-count").innerText=cartCount
+document.getElementById("cart-count").innerText=count
 
 renderCart()
 
@@ -256,27 +310,16 @@ renderCart()
 
 function toggleCart(){
 
-let cartBox=document.getElementById("cart")
-
-if(cartBox.style.display==="flex"){
-
-cartBox.style.display="none"
-
-}else{
-
-cartBox.style.display="flex"
-
-}
+document.getElementById("cartPanel").classList.toggle("active")
 
 }
 
 function checkout(){
 
-alert("Order placed successfully!")
+alert("Thank you for ordering from SoFiss!")
 
 cart=[]
-
-cartCount=0
+count=0
 
 document.getElementById("cart-count").innerText=0
 
