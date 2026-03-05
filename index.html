@@ -2,10 +2,13 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SoFiss | Nourish The Goodness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -13,7 +16,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -21,18 +24,23 @@ background:#fafafa;
 color:#222;
 }
 
+/* NAVBAR */
+
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 60px;
+padding:20px 8%;
 background:#0c3b2e;
 color:white;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 .logo{
 font-size:28px;
-font-weight:bold;
+font-weight:600;
 letter-spacing:2px;
 }
 
@@ -40,30 +48,34 @@ nav a{
 margin:0 15px;
 text-decoration:none;
 color:white;
-font-size:16px;
+font-size:15px;
 }
 
 .cart{
+cursor:pointer;
 font-size:18px;
 }
 
+/* HERO */
+
 .hero{
-height:70vh;
+height:80vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+text-align:center;
+color:white;
+background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
 url("https://images.unsplash.com/photo-1604908177522-4323b4c40d2c");
 background-size:cover;
 background-position:center;
-color:white;
-text-align:center;
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:15px;
+font-size:56px;
+margin-bottom:10px;
+animation:fadeUp 1s ease;
 }
 
 .hero p{
@@ -74,38 +86,40 @@ margin-bottom:25px;
 .hero button{
 background:#d4af37;
 border:none;
-padding:15px 30px;
+padding:15px 35px;
 font-size:18px;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
 }
 
+/* PRODUCTS */
+
 .products{
-padding:70px 80px;
+padding:80px 8%;
 text-align:center;
 }
 
 .products h2{
 font-size:36px;
-margin-bottom:40px;
+margin-bottom:50px;
 }
 
 .product-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+gap:35px;
 }
 
 .card{
 background:white;
+border-radius:14px;
 padding:20px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
 
 .card img{
@@ -118,28 +132,29 @@ margin:15px 0 10px;
 }
 
 .price{
-font-weight:bold;
-margin-bottom:15px;
+font-weight:600;
+margin-bottom:12px;
 }
 
-button{
+.card button{
 background:#0c3b2e;
 color:white;
 padding:10px 20px;
 border:none;
 border-radius:6px;
-cursor:pointer;
 }
+
+/* CART PANEL */
 
 .cart-panel{
 position:fixed;
 right:0;
 top:0;
+width:320px;
 height:100%;
-width:300px;
 background:white;
-box-shadow:-5px 0 15px rgba(0,0,0,0.2);
-padding:20px;
+box-shadow:-5px 0 20px rgba(0,0,0,.2);
+padding:25px;
 display:none;
 }
 
@@ -153,33 +168,88 @@ justify-content:space-between;
 margin-bottom:10px;
 }
 
+/* ABOUT */
+
+.about{
+padding:80px 12%;
+text-align:center;
+background:#f3f3f3;
+}
+
+.about h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+/* FOOTER */
+
 footer{
 background:#111;
 color:white;
 text-align:center;
 padding:30px;
-margin-top:40px;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:36px;
+}
+
+nav{
+display:none;
+}
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
 <div class="logo">SoFiss</div>
 
 <nav>
+
 <a href="#">Home</a>
-<a href="#">Products</a>
-<a href="#">About</a>
-<a href="#">Contact</a>
+<a href="#products">Products</a>
+<a href="#about">About</a>
+
 </nav>
 
 <div class="cart" onclick="toggleCart()">
+
 🛒 <span id="cart-count">0</span>
+
 </div>
 
 </header>
@@ -187,7 +257,7 @@ margin-top:40px;
 
 <section class="hero">
 
-<h1>Premium Dry Fruits</h1>
+<h1>Luxury Dry Fruits</h1>
 <p>Nourish The Goodness</p>
 
 <button onclick="scrollToProducts()">Shop Now</button>
@@ -202,27 +272,58 @@ margin-top:40px;
 <div class="product-grid">
 
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1508747703725-719777637510">
+
 <h3>California Almonds</h3>
+
 <p class="price">₹149</p>
+
 <button onclick="addToCart('Almonds')">Add to Cart</button>
+
 </div>
 
+
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e">
+
 <h3>Premium Cashews</h3>
+
 <p class="price">₹199</p>
+
 <button onclick="addToCart('Cashews')">Add to Cart</button>
+
 </div>
+
 
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1604908554007-80b0e9c2dcb1">
+
 <h3>Dry Fruit Mix</h3>
+
 <p class="price">₹99</p>
-<button onclick="addToCart('Mix')">Add to Cart</button>
+
+<button onclick="addToCart('Mix Fruit')">Add to Cart</button>
+
 </div>
 
 </div>
+
+</section>
+
+
+<section class="about" id="about">
+
+<h2>About SoFiss</h2>
+
+<p>
+
+SoFiss brings premium dry fruits sourced from Kashmir and trusted farms across India.
+Our mission is simple — deliver purity, nutrition, and luxury in every bite.
+
+</p>
 
 </section>
 
@@ -272,8 +373,11 @@ cart.forEach((item,index)=>{
 
 container.innerHTML+=`
 <div class="cart-item">
+
 ${item}
+
 <button onclick="removeItem(${index})">❌</button>
+
 </div>
 `
 
@@ -307,7 +411,7 @@ document.getElementById("products").scrollIntoView({behavior:"smooth"})
 
 function orderNow(){
 
-let message="Hello, I want to order:\n"
+let message="Hello SoFiss, I want to order:\n"
 
 cart.forEach(p=>message+=p+"\n")
 
