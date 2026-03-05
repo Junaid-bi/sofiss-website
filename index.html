@@ -35,20 +35,12 @@ background:#0c3b2e;
 color:white;
 position:sticky;
 top:0;
-z-index:1000;
 }
 
 .logo{
-font-size:28px;
+font-size:26px;
 font-weight:600;
 letter-spacing:2px;
-}
-
-nav a{
-margin:0 15px;
-text-decoration:none;
-color:white;
-font-size:15px;
 }
 
 .cart{
@@ -59,7 +51,7 @@ font-size:18px;
 /* HERO */
 
 .hero{
-height:80vh;
+height:70vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -73,21 +65,14 @@ background-position:center;
 }
 
 .hero h1{
-font-size:56px;
+font-size:48px;
 margin-bottom:10px;
-animation:fadeUp 1s ease;
-}
-
-.hero p{
-font-size:20px;
-margin-bottom:25px;
 }
 
 .hero button{
 background:#d4af37;
 border:none;
-padding:15px 35px;
-font-size:18px;
+padding:14px 30px;
 border-radius:6px;
 cursor:pointer;
 }
@@ -95,31 +80,21 @@ cursor:pointer;
 /* PRODUCTS */
 
 .products{
-padding:80px 8%;
+padding:70px 8%;
 text-align:center;
-}
-
-.products h2{
-font-size:36px;
-margin-bottom:50px;
 }
 
 .product-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:35px;
+gap:30px;
 }
 
 .card{
 background:white;
-border-radius:14px;
+border-radius:12px;
 padding:20px;
-box-shadow:0 15px 35px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
+box-shadow:0 10px 30px rgba(0,0,0,.1);
 }
 
 .card img{
@@ -131,18 +106,20 @@ border-radius:10px;
 margin:15px 0 10px;
 }
 
-.price{
-font-weight:600;
-margin-bottom:12px;
+select,input{
+padding:8px;
+margin:6px 0;
+width:100%;
 }
 
 .card button{
 background:#0c3b2e;
 color:white;
-padding:10px 20px;
 border:none;
-border-radius:6px;
+padding:10px;
+border-radius:5px;
 cursor:pointer;
+width:100%;
 }
 
 /* CART */
@@ -151,7 +128,7 @@ cursor:pointer;
 position:fixed;
 right:0;
 top:0;
-width:320px;
+width:350px;
 height:100%;
 background:white;
 box-shadow:-5px 0 20px rgba(0,0,0,.2);
@@ -160,49 +137,15 @@ display:none;
 overflow:auto;
 }
 
-.cart-panel h2{
-margin-bottom:20px;
-}
-
 .cart-item{
 display:flex;
 justify-content:space-between;
 margin-bottom:10px;
 }
 
-/* ABOUT */
-
-.about{
-padding:80px 12%;
-text-align:center;
-background:#f3f3f3;
-}
-
-.about h2{
-font-size:32px;
-margin-bottom:20px;
-}
-
-.about p{
-max-width:700px;
-margin:auto;
-line-height:1.6;
-}
-
-/* REVIEWS */
-
-.reviews{
-padding:70px 10%;
-text-align:center;
-}
-
-.review-box{
-margin:20px auto;
-max-width:600px;
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
+.total{
+font-weight:600;
+margin-top:20px;
 }
 
 /* FOOTER */
@@ -211,29 +154,8 @@ footer{
 background:#111;
 color:white;
 text-align:center;
-padding:30px;
+padding:25px;
 margin-top:40px;
-}
-
-footer a{
-color:#d4af37;
-text-decoration:none;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
 }
 
 /* MOBILE */
@@ -241,11 +163,7 @@ transform:translateY(0);
 @media(max-width:768px){
 
 .hero h1{
-font-size:36px;
-}
-
-nav{
-display:none;
+font-size:32px;
 }
 
 }
@@ -254,19 +172,13 @@ display:none;
 
 </head>
 
+
 <body>
 
 
 <header>
 
 <div class="logo">SoFiss</div>
-
-<nav>
-<a href="#">Home</a>
-<a href="#products">Products</a>
-<a href="#about">About</a>
-<a href="#reviews">Reviews</a>
-</nav>
 
 <div class="cart" onclick="toggleCart()">
 🛒 <span id="cart-count">0</span>
@@ -278,9 +190,12 @@ display:none;
 <section class="hero">
 
 <h1>Luxury Dry Fruits</h1>
+
 <p>Nourish The Goodness</p>
 
-<button onclick="scrollToProducts()">Shop Now</button>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+Shop Now
+</button>
 
 </section>
 
@@ -289,7 +204,10 @@ display:none;
 
 <h2>Our Products</h2>
 
+<br>
+
 <div class="product-grid">
+
 
 <div class="card">
 
@@ -297,9 +215,17 @@ display:none;
 
 <h3>California Almonds</h3>
 
-<p class="price">₹149</p>
+<select id="almond-size">
+<option value="149">100g - ₹149</option>
+<option value="269">200g - ₹269</option>
+<option value="349">250g - ₹349</option>
+</select>
 
-<button onclick="addToCart('Almonds - ₹149')">Add to Cart</button>
+<input type="number" id="almond-qty" value="1" min="1">
+
+<button onclick="addProduct('Almonds','almond-size','almond-qty')">
+Add to Cart
+</button>
 
 </div>
 
@@ -310,9 +236,17 @@ display:none;
 
 <h3>Premium Cashews</h3>
 
-<p class="price">₹199</p>
+<select id="cashew-size">
+<option value="199">100g - ₹199</option>
+<option value="329">200g - ₹329</option>
+<option value="399">250g - ₹399</option>
+</select>
 
-<button onclick="addToCart('Cashews - ₹199')">Add to Cart</button>
+<input type="number" id="cashew-qty" value="1" min="1">
+
+<button onclick="addProduct('Cashews','cashew-size','cashew-qty')">
+Add to Cart
+</button>
 
 </div>
 
@@ -323,43 +257,20 @@ display:none;
 
 <h3>Dry Fruit Mix</h3>
 
-<p class="price">₹99</p>
+<select id="mix-size">
+<option value="99">100g - ₹99</option>
+<option value="149">200g - ₹149</option>
+<option value="199">250g - ₹199</option>
+</select>
 
-<button onclick="addToCart('Mix Fruit - ₹99')">Add to Cart</button>
+<input type="number" id="mix-qty" value="1" min="1">
+
+<button onclick="addProduct('Mix','mix-size','mix-qty')">
+Add to Cart
+</button>
 
 </div>
 
-</div>
-
-</section>
-
-
-<section class="about" id="about">
-
-<h2>About SoFiss</h2>
-
-<p>
-
-SoFiss brings premium dry fruits sourced from Kashmir and trusted farms across India.
-Our mission is simple — deliver purity, nutrition, and luxury in every bite.
-
-</p>
-
-</section>
-
-
-<section class="reviews" id="reviews">
-
-<h2>Customer Reviews</h2>
-
-<div class="review-box">
-⭐⭐⭐⭐⭐
-"Best almonds I have tasted. Fresh and premium."
-</div>
-
-<div class="review-box">
-⭐⭐⭐⭐⭐
-"Perfect snack for daily nutrition."
 </div>
 
 </section>
@@ -371,9 +282,11 @@ Our mission is simple — deliver purity, nutrition, and luxury in every bite.
 
 <div id="cart-items"></div>
 
+<p class="total">Total: ₹<span id="total">0</span></p>
+
 <br>
 
-<button onclick="orderNow()">Order on WhatsApp</button>
+<button onclick="checkout()">Order on WhatsApp</button>
 
 </div>
 
@@ -381,13 +294,7 @@ Our mission is simple — deliver purity, nutrition, and luxury in every bite.
 <footer>
 
 <p>© 2026 SoFiss</p>
-
 <p>Srinagar, Kashmir</p>
-
-<p>
-Follow us on
-<a href="https://instagram.com/">Instagram</a>
-</p>
 
 </footer>
 
@@ -395,18 +302,24 @@ Follow us on
 <script>
 
 let cart=[]
+let total=0
 
-function addToCart(product){
+function addProduct(name,sizeId,qtyId){
 
-cart.push(product)
+let price=document.getElementById(sizeId).value
+let qty=document.getElementById(qtyId).value
 
-document.getElementById("cart-count").innerText=cart.length
+let cost=price*qty
 
-renderCart()
+cart.push({name,price,qty,cost})
+
+total+=cost
+
+updateCart()
 
 }
 
-function renderCart(){
+function updateCart(){
 
 let container=document.getElementById("cart-items")
 
@@ -416,25 +329,24 @@ cart.forEach((item,index)=>{
 
 container.innerHTML+=`
 <div class="cart-item">
-
-${item}
-
+${item.name} x${item.qty} - ₹${item.cost}
 <button onclick="removeItem(${index})">❌</button>
-
 </div>
 `
 
 })
 
+document.getElementById("cart-count").innerText=cart.length
+document.getElementById("total").innerText=total
+
 }
 
 function removeItem(index){
 
+total-=cart[index].cost
 cart.splice(index,1)
 
-document.getElementById("cart-count").innerText=cart.length
-
-renderCart()
+updateCart()
 
 }
 
@@ -446,17 +358,15 @@ panel.style.display=panel.style.display==="block"?"none":"block"
 
 }
 
-function scrollToProducts(){
-
-document.getElementById("products").scrollIntoView({behavior:"smooth"})
-
-}
-
-function orderNow(){
+function checkout(){
 
 let message="Hello SoFiss, I want to order:\n"
 
-cart.forEach(p=>message+=p+"\n")
+cart.forEach(item=>{
+message+=`${item.name} x${item.qty} - ₹${item.cost}\n`
+})
+
+message+=`\nTotal: ₹${total}`
 
 window.open("https://wa.me/91XXXXXXXXXX?text="+encodeURIComponent(message))
 
