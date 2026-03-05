@@ -142,9 +142,10 @@ color:white;
 padding:10px 20px;
 border:none;
 border-radius:6px;
+cursor:pointer;
 }
 
-/* CART PANEL */
+/* CART */
 
 .cart-panel{
 position:fixed;
@@ -156,6 +157,7 @@ background:white;
 box-shadow:-5px 0 20px rgba(0,0,0,.2);
 padding:25px;
 display:none;
+overflow:auto;
 }
 
 .cart-panel h2{
@@ -187,6 +189,22 @@ margin:auto;
 line-height:1.6;
 }
 
+/* REVIEWS */
+
+.reviews{
+padding:70px 10%;
+text-align:center;
+}
+
+.review-box{
+margin:20px auto;
+max-width:600px;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
 /* FOOTER */
 
 footer{
@@ -194,6 +212,12 @@ background:#111;
 color:white;
 text-align:center;
 padding:30px;
+margin-top:40px;
+}
+
+footer a{
+color:#d4af37;
+text-decoration:none;
 }
 
 /* ANIMATION */
@@ -230,7 +254,6 @@ display:none;
 
 </head>
 
-
 <body>
 
 
@@ -239,17 +262,14 @@ display:none;
 <div class="logo">SoFiss</div>
 
 <nav>
-
 <a href="#">Home</a>
 <a href="#products">Products</a>
 <a href="#about">About</a>
-
+<a href="#reviews">Reviews</a>
 </nav>
 
 <div class="cart" onclick="toggleCart()">
-
 🛒 <span id="cart-count">0</span>
-
 </div>
 
 </header>
@@ -279,7 +299,7 @@ display:none;
 
 <p class="price">₹149</p>
 
-<button onclick="addToCart('Almonds')">Add to Cart</button>
+<button onclick="addToCart('Almonds - ₹149')">Add to Cart</button>
 
 </div>
 
@@ -292,7 +312,7 @@ display:none;
 
 <p class="price">₹199</p>
 
-<button onclick="addToCart('Cashews')">Add to Cart</button>
+<button onclick="addToCart('Cashews - ₹199')">Add to Cart</button>
 
 </div>
 
@@ -305,7 +325,7 @@ display:none;
 
 <p class="price">₹99</p>
 
-<button onclick="addToCart('Mix Fruit')">Add to Cart</button>
+<button onclick="addToCart('Mix Fruit - ₹99')">Add to Cart</button>
 
 </div>
 
@@ -328,6 +348,23 @@ Our mission is simple — deliver purity, nutrition, and luxury in every bite.
 </section>
 
 
+<section class="reviews" id="reviews">
+
+<h2>Customer Reviews</h2>
+
+<div class="review-box">
+⭐⭐⭐⭐⭐
+"Best almonds I have tasted. Fresh and premium."
+</div>
+
+<div class="review-box">
+⭐⭐⭐⭐⭐
+"Perfect snack for daily nutrition."
+</div>
+
+</section>
+
+
 <div class="cart-panel" id="cart-panel">
 
 <h2>Your Cart</h2>
@@ -344,7 +381,13 @@ Our mission is simple — deliver purity, nutrition, and luxury in every bite.
 <footer>
 
 <p>© 2026 SoFiss</p>
+
 <p>Srinagar, Kashmir</p>
+
+<p>
+Follow us on
+<a href="https://instagram.com/">Instagram</a>
+</p>
 
 </footer>
 
@@ -415,7 +458,7 @@ let message="Hello SoFiss, I want to order:\n"
 
 cart.forEach(p=>message+=p+"\n")
 
-window.open("https://wa.me/917780892946?text="+encodeURIComponent(message))
+window.open("https://wa.me/91XXXXXXXXXX?text="+encodeURIComponent(message))
 
 }
 
@@ -423,4 +466,3 @@ window.open("https://wa.me/917780892946?text="+encodeURIComponent(message))
 
 </body>
 </html>
-
