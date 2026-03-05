@@ -1,113 +1,74 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<title>SoFiss | Nourish The Goodness</title>
+<title>SoFiss - Nourish The Goodness</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body{
+font-family: Arial;
 margin:0;
-font-family: 'Segoe UI', sans-serif;
-background:#f9f9f9;
+background:#f7f7f7;
 }
 
-/* HEADER */
-
 header{
-background:#0d3b2e;
+background:#0b3d2e;
 color:white;
-padding:25px;
+padding:20px;
 text-align:center;
 }
 
-header h1{
-margin:0;
-font-size:36px;
-letter-spacing:2px;
+.hero{
+background:#c8e6c9;
+padding:60px;
+text-align:center;
 }
 
-header p{
-margin-top:5px;
-color:#d4af37;
+.hero h1{
+font-size:40px;
 }
-
-/* PRODUCTS */
 
 .products{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
 gap:30px;
-padding:50px;
+padding:40px;
+flex-wrap:wrap;
 }
 
 .card{
 background:white;
-width:240px;
-border-radius:12px;
+padding:20px;
+width:250px;
+border-radius:10px;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 text-align:center;
-overflow:hidden;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
 }
 
 .card img{
 width:100%;
-height:160px;
-object-fit:cover;
-}
-
-.card h3{
-margin:10px 0 5px;
-}
-
-.price{
-color:#0d3b2e;
-font-weight:bold;
-font-size:18px;
-margin-bottom:10px;
+border-radius:8px;
 }
 
 button{
-background:#d4af37;
+background:#0b3d2e;
+color:white;
+padding:10px 20px;
 border:none;
-padding:10px 15px;
-border-radius:6px;
+border-radius:5px;
 cursor:pointer;
-font-weight:bold;
 }
 
 button:hover{
-background:#b8962e;
-}
-
-/* CART */
-
-.cart{
-background:white;
-max-width:420px;
-margin:20px auto;
-padding:25px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.cart h3{
-margin-top:0;
+background:#145c43;
 }
 
 footer{
+background:#111;
+color:white;
 text-align:center;
-padding:30px;
-color:#777;
+padding:20px;
 }
-
 </style>
 
 </head>
@@ -115,203 +76,50 @@ color:#777;
 <body>
 
 <header>
-
 <h1>SoFiss</h1>
 <p>Nourish The Goodness</p>
-
-<h3>Cart: <span id="cart-count">0</span></h3>
-
 </header>
 
+<section class="hero">
+<h1>Premium Dry Fruits</h1>
+<p>Fresh | Healthy | From Trusted Sources</p>
 
-<div class="products">
+<a href="https://wa.me/91XXXXXXXXXX">
+<button>Order on WhatsApp</button>
+</a>
+</section>
+
+<section class="products">
 
 <div class="card">
-
-<img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32">
-
+<img src="https://images.unsplash.com/photo-1508747703725-719777637510">
 <h3>California Almonds</h3>
-
-<div class="price">₹149</div>
-
-<button onclick="addToCart('Almonds',149)">Add to Cart</button>
-
+<p>100g ₹149</p>
+<button>Add to Cart</button>
 </div>
 
-
 <div class="card">
-
-<img src="https://images.unsplash.com/photo-1615486363973-0b7c09f7a6c1">
-
+<img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e">
 <h3>Premium Cashews</h3>
-
-<div class="price">₹199</div>
-
-<button onclick="addToCart('Cashews',199)">Add to Cart</button>
-
+<p>100g ₹199</p>
+<button>Add to Cart</button>
 </div>
-
 
 <div class="card">
-
-<img src="https://images.unsplash.com/photo-1615486363973-0b7c09f7a6c1">
-
-<h3>Energy Mix</h3>
-
-<div class="price">₹99</div>
-
-<button onclick="addToCart('Energy Mix',99)">Add to Cart</button>
-
+<img src="https://images.unsplash.com/photo-1604908554007-80b0e9c2dcb1">
+<h3>Dry Fruit Mix</h3>
+<p>100g ₹99</p>
+<button>Add to Cart</button>
 </div>
 
-</div>
-
-
-<div class="cart">
-
-<h3>Your Cart</h3>
-
-<ul id="cart-items"></ul>
-
-<h3>Total: ₹<span id="total">0</span></h3>
-
-<button onclick="orderWhatsApp()">Order on WhatsApp</button>
-<button onclick="clearCart()">Clear Cart</button>
-<button onclick="payNow()">Pay Via UPI</button>
-
-
-</div>
-
+</section>
 
 <footer>
 
-© SoFiss Dry Fruits
+<p>© 2026 SoFiss</p>
+<p>Srinagar, Kashmir</p>
 
 </footer>
 
-
-<script>
-
-let cart = {}
-
-function addToCart(product, price){
-
-if(cart[product]){
-cart[product].qty += 1
-}
-else{
-cart[product] = {price: price, qty: 1}
-}
-
-updateCart()
-
-}
-
-function updateCart(){
-
-let list = document.getElementById("cart-items")
-list.innerHTML=""
-
-let total = 0
-let count = 0
-
-for(let product in cart){
-
-let item = cart[product]
-
-let li = document.createElement("li")
-
-li.innerHTML = `
-${product} - ₹${item.price}
-<button onclick="decreaseQty('${product}')">−</button>
-${item.qty}
-<button onclick="increaseQty('${product}')">+</button>
-<button onclick="removeItem('${product}')">Remove</button>
-`
-
-list.appendChild(li)
-
-total += item.price * item.qty
-count += item.qty
-
-}
-
-document.getElementById("cart-count").innerText = count
-document.getElementById("total").innerText = total
-
-}
-
-function increaseQty(product){
-
-cart[product].qty++
-updateCart()
-
-}
-
-function decreaseQty(product){
-
-cart[product].qty--
-
-if(cart[product].qty <= 0){
-delete cart[product]
-}
-
-updateCart()
-
-}
-
-function removeItem(product){
-
-delete cart[product]
-updateCart()
-
-}
-
-function clearCart(){
-
-cart = {}
-updateCart()
-
-}
-
-function orderWhatsApp(){
-
-let total = document.getElementById("total").innerText
-
-if(total == 0){
-alert("Cart is empty")
-return
-}
-
-let message = "Hello SoFiss, I want to order:%0A"
-
-for(let product in cart){
-
-message += product + " x " + cart[product].qty + "%0A"
-
-}
-
-message += "%0ATotal: ₹"+total
-
-let phone="91XXXXXXXXXX"
-
-window.open("https://wa.me/"+phone+"?text="+message)
-
-}
-function payNow() {
-    let total = document.getElementById("total").innerText
-    if(total == 0){
-        alert("Cart is empty")
-        return
-    }
-    let upi = "junaidsofi123@ybl"
-    let name = "SoFiss"
-    let url ='upi://pay?pa=${upi}&pn=${name}&am=${total}&cu=INR'
-    window.location.href = url
-}
-
-</script>
-
 </body>
-
 </html>
