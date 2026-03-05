@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SoFiss | Nourish The Goodness</title>
+
+<style>
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:#f9f9f9;
+}
+
+/* HEADER */
+
+header{
+background:#0d3b2e;
+color:white;
+padding:25px;
+text-align:center;
+}
+
+header h1{
+margin:0;
+font-size:36px;
+letter-spacing:2px;
+}
+
+header p{
+margin-top:5px;
+color:#d4af37;
+}
+
+/* PRODUCTS */
+
+.products{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+padding:50px;
+}
+
+.card{
+background:white;
+width:240px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+overflow:hidden;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+.card h3{
+margin:10px 0 5px;
+}
+
+.price{
+color:#0d3b2e;
+font-weight:bold;
+font-size:18px;
+margin-bottom:10px;
+}
+
+button{
+background:#d4af37;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#b8962e;
+}
+
+/* CART */
+
+.cart{
+background:white;
+max-width:420px;
+margin:20px auto;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cart h3{
+margin-top:0;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>SoFiss</h1>
+<p>Nourish The Goodness</p>
+
+<h3>Cart: <span id="cart-count">0</span></h3>
+
+</header>
+
+
+<div class="products">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32">
+
+<h3>California Almonds</h3>
+
+<div class="price">₹149</div>
+
+<button onclick="addToCart('Almonds',149)">Add to Cart</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1615486363973-0b7c09f7a6c1">
+
+<h3>Premium Cashews</h3>
+
+<div class="price">₹199</div>
+
+<button onclick="addToCart('Cashews',199)">Add to Cart</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1615486363973-0b7c09f7a6c1">
+
+<h3>Energy Mix</h3>
+
+<div class="price">₹99</div>
+
+<button onclick="addToCart('Energy Mix',99)">Add to Cart</button>
+
+</div>
+
+</div>
+
+
+<div class="cart">
+
+<h3>Your Cart</h3>
+
+<ul id="cart-items"></ul>
+
+<h3>Total: ₹<span id="total">0</span></h3>
+
+<button onclick="orderWhatsApp()">Order on WhatsApp</button>
+<button onclick="clearCart()">Clear Cart</button>
+<button onclick="payNow()">Pay Via UPI</button>
+
+
+</div>
+
+
+<footer>
+
+© SoFiss Dry Fruits
+
+</footer>
+
+
+<script>
+
+let cart = {}
+
+function addToCart(product, price){
+
+if(cart[product]){
+cart[product].qty += 1
+}
+else{
+cart[product] = {price: price, qty: 1}
+}
+
+updateCart()
+
+}
+
+function updateCart(){
+
+let list = document.getElementById("cart-items")
+list.innerHTML=""
+
+let total = 0
+let count = 0
+
+for(let product in cart){
+
+let item = cart[product]
+
+let li = document.createElement("li")
+
+li.innerHTML = `
+${product} - ₹${item.price}
+<button onclick="decreaseQty('${product}')">−</button>
+${item.qty}
+<button onclick="increaseQty('${product}')">+</button>
+<button onclick="removeItem('${product}')">Remove</button>
+`
+
+list.appendChild(li)
+
+total += item.price * item.qty
+count += item.qty
+
+}
+
+document.getElementById("cart-count").innerText = count
+document.getElementById("total").innerText = total
+
+}
+
+function increaseQty(product){
+
+cart[product].qty++
+updateCart()
+
+}
+
+function decreaseQty(product){
+
+cart[product].qty--
+
+if(cart[product].qty <= 0){
+delete cart[product]
+}
+
+updateCart()
+
+}
+
+function removeItem(product){
+
+delete cart[product]
+updateCart()
+
+}
+
+function clearCart(){
+
+cart = {}
+updateCart()
+
+}
+
+function orderWhatsApp(){
+
+let total = document.getElementById("total").innerText
+
+if(total == 0){
+alert("Cart is empty")
+return
+}
+
+let message = "Hello SoFiss, I want to order:%0A"
+
+for(let product in cart){
+
+message += product + " x " + cart[product].qty + "%0A"
+
+}
+
+message += "%0ATotal: ₹"+total
+
+let phone="91XXXXXXXXXX"
+
+window.open("https://wa.me/"+phone+"?text="+message)
+
+}
+function payNow() {
+    let total = document.getElementById("total").innerText
+    if(total == 0){
+        alert("Cart is empty")
+        return
+    }
+    let upi = "junaidsofi123@ybl"
+    let name = "SoFiss"
+    let url ='upi://pay?pa=${upi}&pn=${name}&am=${total}&cu=INR'
+    window.location.href = url
+}
+
+</script>
+
+</body>
+
+</html>
