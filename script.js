@@ -1,37 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>SoFiss | Luxury Dry Fruits</title>
-<link rel="stylesheet" href="style.css">
-</head>
+let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-<body>
+function addToCart(name,price){
 
-<header>
-<h1>SoFiss</h1>
+cart.push({name,price})
 
-<nav>
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-</nav>
+localStorage.setItem("cart",JSON.stringify(cart))
 
-</header>
+updateCartCount()
 
-<section class="hero">
+alert(name + " added to cart")
 
-<h2>Nourish The Goodness</h2>
-<p>Premium Dry Fruits from Kashmir</p>
+}
 
-<a href="shop.html">
-<button class="btn">Shop Now</button>
-</a>
+function updateCartCount(){
 
-</section>
+let count=document.getElementById("cart-count")
 
-<script src="script.js"></script>
+if(count){
+count.innerText=cart.length
+}
 
-</body>
-</html>
+}
+
+updateCartCount()
+
+if(document.getElementById("cart-items")){
+
+displayCart()
+
+}
+
+function displayCart(){
+
+let cartContainer=document.getElementById("cart-items")
+
+let total=0
+
+cartContainer.innerHTML=""
+
+cart.forEach((item,index)=>{
+
+total+=item.price
+
+cartContainer.innerHTML+=`
+
+<div>
+
+${item.name} - ₹${item.price}
+
+<button onclick="removeItem(${index})">Remove</button>
+
+</div>
+
+`
+
+})
+
+document.getElementById("total").innerText="Total: ₹"+total
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1)
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+displayCart()
+
+updateCartCount()
+
+}
