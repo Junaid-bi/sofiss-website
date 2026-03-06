@@ -47,6 +47,7 @@ nav a{
 margin:0 15px;
 text-decoration:none;
 color:#333;
+cursor:pointer;
 }
 
 .cart{
@@ -57,20 +58,20 @@ font-weight:600;
 /* HERO */
 
 .hero{
-height:70vh;
-background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+height:55vh;
+background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
 url("https://images.unsplash.com/photo-1604908176997-4317a8c7d0cb");
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:center;
 color:white;
+text-align:center;
 }
 
 .hero h1{
-font-size:60px;
+font-size:55px;
 }
 
 /* PRODUCTS */
@@ -88,11 +89,6 @@ border-radius:15px;
 padding:20px;
 text-align:center;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
 }
 
 .card img{
@@ -107,8 +103,6 @@ font-weight:600;
 color:#14532d;
 }
 
-/* BUTTONS */
-
 button{
 background:#14532d;
 color:white;
@@ -116,6 +110,7 @@ border:none;
 padding:12px 20px;
 border-radius:8px;
 cursor:pointer;
+margin-top:10px;
 }
 
 button:hover{
@@ -134,8 +129,7 @@ background:white;
 padding:30px;
 box-shadow:-5px 0 20px rgba(0,0,0,0.1);
 transition:0.4s;
-display:flex;
-flex-direction:column;
+overflow:auto;
 }
 
 .cart-panel.active{
@@ -153,20 +147,51 @@ margin-top:20px;
 font-weight:600;
 }
 
-/* REVIEWS */
+/* CHECKOUT */
 
-.reviews{
-padding:80px 60px;
+.checkout{
+display:none;
+padding:60px;
 background:white;
-text-align:center;
 }
 
-.review{
-margin-top:20px;
-font-style:italic;
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ddd;
 }
 
-/* FOOTER */
+/* ORDER TRACKING */
+
+.track{
+display:none;
+padding:60px;
+background:white;
+}
+
+.status{
+padding:10px;
+background:#eee;
+border-radius:6px;
+margin-top:10px;
+}
+
+/* ADMIN */
+
+.admin{
+display:none;
+padding:60px;
+}
+
+.order-card{
+background:white;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
 
 footer{
 background:#14532d;
@@ -174,18 +199,6 @@ color:white;
 padding:40px;
 text-align:center;
 margin-top:60px;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:14px 20px;
-border-radius:50px;
-color:white;
-text-decoration:none;
-font-weight:600;
 }
 
 </style>
@@ -200,9 +213,9 @@ font-weight:600;
 <div class="logo">SoFiss</div>
 
 <nav>
-<a href="#">Home</a>
-<a href="#">Products</a>
-<a href="#">Reviews</a>
+<a onclick="showHome()">Home</a>
+<a onclick="showTrack()">Track Order</a>
+<a onclick="showAdmin()">Admin</a>
 </nav>
 
 <div class="cart" onclick="toggleCart()">
@@ -212,7 +225,7 @@ Cart (<span id="cart-count">0</span>)
 </header>
 
 
-<section class="hero">
+<section class="hero" id="hero">
 
 <div>
 <h1>SoFiss</h1>
@@ -222,64 +235,28 @@ Cart (<span id="cart-count">0</span>)
 </section>
 
 
-<section class="products">
+<section class="products" id="products">
 
 <div class="card">
-
 <img src="https://images.unsplash.com/photo-1508747703725-719777637510">
-
 <h3>California Almonds</h3>
-
 <div class="price">₹149</div>
-
-<button onclick="addToCart('Almonds',149)">
-Add to Cart
-</button>
-
+<button onclick="addToCart('Almonds',149)">Add to Cart</button>
 </div>
 
-
 <div class="card">
-
 <img src="https://images.unsplash.com/photo-1615486363976-54a61d5bb0f7">
-
 <h3>Premium Cashews</h3>
-
 <div class="price">₹199</div>
-
-<button onclick="addToCart('Cashews',199)">
-Add to Cart
-</button>
-
+<button onclick="addToCart('Cashews',199)">Add to Cart</button>
 </div>
-
 
 <div class="card">
-
 <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7">
-
 <h3>Energy Mix</h3>
-
 <div class="price">₹99</div>
-
-<button onclick="addToCart('Mix Fruit',99)">
-Add to Cart
-</button>
-
+<button onclick="addToCart('Mix Fruit',99)">Add to Cart</button>
 </div>
-
-</section>
-
-
-<section class="reviews">
-
-<h2>Customer Reviews</h2>
-
-<p class="review">⭐⭐⭐⭐⭐ “Fresh and premium quality dry fruits!”</p>
-
-<p class="review">⭐⭐⭐⭐⭐ “Perfect snack for daily nutrition.”</p>
-
-<p class="review">⭐⭐⭐⭐⭐ “Best almonds I have tasted.”</p>
 
 </section>
 
@@ -291,19 +268,50 @@ Add to Cart
 <div id="cartItems"></div>
 
 <div class="total">
-Total: ₹<span id="total">0</span>
+Total ₹<span id="total">0</span>
 </div>
 
-<button onclick="checkout()">
-Checkout
-</button>
+<button onclick="openCheckout()">Checkout</button>
 
 </div>
 
 
-<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">
-Order on WhatsApp
-</a>
+<section class="checkout" id="checkout">
+
+<h2>Checkout</h2>
+
+<div id="orderSummary"></div>
+
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="Phone">
+<input id="email" placeholder="Email">
+<textarea id="address" placeholder="Delivery Address"></textarea>
+
+<button onclick="placeOrder()">Place Order</button>
+
+</section>
+
+
+<section class="track" id="track">
+
+<h2>Track Your Order</h2>
+
+<input id="trackPhone" placeholder="Enter Phone Number">
+
+<button onclick="trackOrder()">Track</button>
+
+<div id="trackResult"></div>
+
+</section>
+
+
+<section class="admin" id="adminPanel">
+
+<h2>Admin Dashboard</h2>
+
+<div id="orders"></div>
+
+</section>
 
 
 <footer>
@@ -316,8 +324,8 @@ Order on WhatsApp
 <script>
 
 let cart=[]
-let count=0
 let total=0
+let count=0
 
 function addToCart(name,price){
 
@@ -339,30 +347,23 @@ let items=document.getElementById("cartItems")
 
 items.innerHTML=""
 
-cart.forEach((item,index)=>{
+cart.forEach((item,i)=>{
 
 items.innerHTML+=`
-
 <div class="cart-item">
-
 ${item.name} ₹${item.price}
-
-<button onclick="removeItem(${index})">X</button>
-
+<button onclick="removeItem(${i})">X</button>
 </div>
-
 `
 
 })
 
 }
 
-function removeItem(index){
+function removeItem(i){
 
-total-=cart[index].price
-
-cart.splice(index,1)
-
+total-=cart[i].price
+cart.splice(i,1)
 count--
 
 document.getElementById("cart-count").innerText=count
@@ -378,13 +379,45 @@ document.getElementById("cartPanel").classList.toggle("active")
 
 }
 
-function checkout(){
+function openCheckout(){
 
-alert("Thank you for ordering from SoFiss!")
+document.getElementById("checkout").style.display="block"
+
+let summary=""
+
+cart.forEach(item=>{
+summary+=`<p>${item.name} - ₹${item.price}</p>`
+})
+
+document.getElementById("orderSummary").innerHTML=summary
+
+}
+
+function placeOrder(){
+
+let orderID="SF"+Math.floor(Math.random()*100000)
+
+let order={
+id:orderID,
+name:document.getElementById("name").value,
+phone:document.getElementById("phone").value,
+address:document.getElementById("address").value,
+items:cart,
+total:total,
+status:"Pending"
+}
+
+let orders=JSON.parse(localStorage.getItem("orders")) || []
+
+orders.push(order)
+
+localStorage.setItem("orders",JSON.stringify(orders))
+
+alert("Order Placed! Order ID: "+orderID)
 
 cart=[]
-count=0
 total=0
+count=0
 
 document.getElementById("cart-count").innerText=0
 document.getElementById("total").innerText=0
@@ -393,9 +426,79 @@ renderCart()
 
 }
 
+function showTrack(){
+
+document.getElementById("track").style.display="block"
+
+}
+
+function trackOrder(){
+
+let phone=document.getElementById("trackPhone").value
+
+let orders=JSON.parse(localStorage.getItem("orders")) || []
+
+let result=""
+
+orders.forEach(o=>{
+
+if(o.phone===phone){
+
+result+=`
+
+<div class="status">
+
+Order ${o.id} - ${o.status} <br>
+Total ₹${o.total}
+
+</div>
+
+`
+
+}
+
+})
+
+document.getElementById("trackResult").innerHTML=result || "No orders found"
+
+}
+
+function showAdmin(){
+
+document.getElementById("adminPanel").style.display="block"
+
+let orders=JSON.parse(localStorage.getItem("orders")) || []
+
+let html=""
+
+orders.forEach(o=>{
+
+html+=`
+
+<div class="order-card">
+
+<h3>Order ${o.id}</h3>
+
+<p>Name: ${o.name}</p>
+
+<p>Phone: ${o.phone}</p>
+
+<p>Total: ₹${o.total}</p>
+
+<p>Status: ${o.status}</p>
+
+</div>
+
+`
+
+})
+
+document.getElementById("orders").innerHTML=html
+
+}
+
 </script>
 
 
 </body>
-
 </html>
