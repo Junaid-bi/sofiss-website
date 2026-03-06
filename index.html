@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -23,16 +24,17 @@ background:#fafafa;
 color:#222;
 }
 
+/* HEADER */
+
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 60px;
 background:white;
-box-shadow:0 4px 20px rgba(0,0,0,0.05);
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
 position:sticky;
 top:0;
-z-index:100;
 }
 
 .logo{
@@ -45,7 +47,6 @@ nav a{
 margin:0 15px;
 text-decoration:none;
 color:#333;
-font-weight:500;
 }
 
 .cart{
@@ -53,9 +54,11 @@ cursor:pointer;
 font-weight:600;
 }
 
+/* HERO */
+
 .hero{
-height:80vh;
-background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+height:70vh;
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
 url("https://images.unsplash.com/photo-1604908176997-4317a8c7d0cb");
 background-size:cover;
 background-position:center;
@@ -68,32 +71,28 @@ color:white;
 
 .hero h1{
 font-size:60px;
-letter-spacing:2px;
 }
 
-.hero p{
-font-size:22px;
-margin-top:10px;
-}
+/* PRODUCTS */
 
 .products{
 padding:80px 60px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:40px;
 }
 
 .card{
 background:white;
 border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
 padding:20px;
 text-align:center;
-transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-8px);
 }
 
 .card img{
@@ -108,6 +107,8 @@ font-weight:600;
 color:#14532d;
 }
 
+/* BUTTONS */
+
 button{
 background:#14532d;
 color:white;
@@ -115,22 +116,23 @@ border:none;
 padding:12px 20px;
 border-radius:8px;
 cursor:pointer;
-font-weight:500;
 }
 
 button:hover{
-background:#0f3d21;
+background:#0e3f22;
 }
+
+/* CART */
 
 .cart-panel{
 position:fixed;
-right:-350px;
+right:-360px;
 top:0;
-width:350px;
+width:360px;
 height:100%;
 background:white;
-box-shadow:-5px 0 20px rgba(0,0,0,0.1);
 padding:30px;
+box-shadow:-5px 0 20px rgba(0,0,0,0.1);
 transition:0.4s;
 display:flex;
 flex-direction:column;
@@ -144,11 +146,34 @@ right:0;
 display:flex;
 justify-content:space-between;
 margin:15px 0;
-font-size:15px;
 }
 
-.checkout{
-margin-top:auto;
+.total{
+margin-top:20px;
+font-weight:600;
+}
+
+/* REVIEWS */
+
+.reviews{
+padding:80px 60px;
+background:white;
+text-align:center;
+}
+
+.review{
+margin-top:20px;
+font-style:italic;
+}
+
+/* FOOTER */
+
+footer{
+background:#14532d;
+color:white;
+padding:40px;
+text-align:center;
+margin-top:60px;
 }
 
 .whatsapp{
@@ -156,22 +181,15 @@ position:fixed;
 bottom:20px;
 right:20px;
 background:#25D366;
-color:white;
-padding:15px 20px;
+padding:14px 20px;
 border-radius:50px;
-font-weight:600;
-text-decoration:none;
-}
-
-footer{
-margin-top:80px;
-padding:40px;
-background:#14532d;
 color:white;
-text-align:center;
+text-decoration:none;
+font-weight:600;
 }
 
 </style>
+
 </head>
 
 
@@ -184,7 +202,7 @@ text-align:center;
 <nav>
 <a href="#">Home</a>
 <a href="#">Products</a>
-<a href="#">About</a>
+<a href="#">Reviews</a>
 </nav>
 
 <div class="cart" onclick="toggleCart()">
@@ -207,25 +225,61 @@ Cart (<span id="cart-count">0</span>)
 <section class="products">
 
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1508747703725-719777637510">
+
 <h3>California Almonds</h3>
+
 <div class="price">₹149</div>
-<button onclick="addToCart('Almonds',149)">Add to Cart</button>
+
+<button onclick="addToCart('Almonds',149)">
+Add to Cart
+</button>
+
 </div>
 
+
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1615486363976-54a61d5bb0f7">
+
 <h3>Premium Cashews</h3>
+
 <div class="price">₹199</div>
-<button onclick="addToCart('Cashews',199)">Add to Cart</button>
+
+<button onclick="addToCart('Cashews',199)">
+Add to Cart
+</button>
+
 </div>
 
+
 <div class="card">
+
 <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7">
+
 <h3>Energy Mix</h3>
+
 <div class="price">₹99</div>
-<button onclick="addToCart('Mix Fruit',99)">Add to Cart</button>
+
+<button onclick="addToCart('Mix Fruit',99)">
+Add to Cart
+</button>
+
 </div>
+
+</section>
+
+
+<section class="reviews">
+
+<h2>Customer Reviews</h2>
+
+<p class="review">⭐⭐⭐⭐⭐ “Fresh and premium quality dry fruits!”</p>
+
+<p class="review">⭐⭐⭐⭐⭐ “Perfect snack for daily nutrition.”</p>
+
+<p class="review">⭐⭐⭐⭐⭐ “Best almonds I have tasted.”</p>
 
 </section>
 
@@ -236,9 +290,13 @@ Cart (<span id="cart-count">0</span>)
 
 <div id="cartItems"></div>
 
-<div class="checkout">
-<button onclick="checkout()">Checkout</button>
+<div class="total">
+Total: ₹<span id="total">0</span>
 </div>
+
+<button onclick="checkout()">
+Checkout
+</button>
 
 </div>
 
@@ -255,18 +313,21 @@ Order on WhatsApp
 </footer>
 
 
-
 <script>
 
 let cart=[]
 let count=0
+let total=0
 
 function addToCart(name,price){
 
 cart.push({name,price})
+
 count++
+total+=price
 
 document.getElementById("cart-count").innerText=count
+document.getElementById("total").innerText=total
 
 renderCart()
 
@@ -284,7 +345,7 @@ items.innerHTML+=`
 
 <div class="cart-item">
 
-${item.name} - ₹${item.price}
+${item.name} ₹${item.price}
 
 <button onclick="removeItem(${index})">X</button>
 
@@ -298,11 +359,14 @@ ${item.name} - ₹${item.price}
 
 function removeItem(index){
 
+total-=cart[index].price
+
 cart.splice(index,1)
 
 count--
 
 document.getElementById("cart-count").innerText=count
+document.getElementById("total").innerText=total
 
 renderCart()
 
@@ -320,8 +384,10 @@ alert("Thank you for ordering from SoFiss!")
 
 cart=[]
 count=0
+total=0
 
 document.getElementById("cart-count").innerText=0
+document.getElementById("total").innerText=0
 
 renderCart()
 
@@ -329,5 +395,7 @@ renderCart()
 
 </script>
 
+
 </body>
+
 </html>
