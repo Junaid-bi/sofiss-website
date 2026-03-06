@@ -1,19 +1,37 @@
-function searchProducts(){
+<!DOCTYPE html>
+<html>
+<head>
+<title>SoFiss | Luxury Dry Fruits</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-let input = document.getElementById("search").value.toLowerCase();
+<body>
 
-let products = document.querySelectorAll(".product");
+<header>
+<h1>SoFiss</h1>
 
-products.forEach(product=>{
+<nav>
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+</nav>
 
-let name = product.innerText.toLowerCase();
+</header>
 
-if(name.includes(input)){
-product.style.display="block";
-}else{
-product.style.display="none";
-}
+<section class="hero">
 
-});
+<h2>Nourish The Goodness</h2>
+<p>Premium Dry Fruits from Kashmir</p>
 
-}
+<a href="shop.html">
+<button class="btn">Shop Now</button>
+</a>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
