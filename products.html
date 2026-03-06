@@ -13,34 +13,39 @@
 <nav>
 <a href="index.html">Home</a>
 <a href="products.html">Products</a>
+<a href="login.html">Login</a>
 <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
 </nav>
-
 </header>
 
-<section class="products">
+<div class="search-bar">
+<input type="text" id="search" placeholder="Search dry fruits..." onkeyup="searchProducts()">
+</div>
 
-<h2>Our Collection</h2>
+<section class="products" id="product-list">
 
 <div class="product">
+<img src="https://images.unsplash.com/photo-1606925797303-10e8f3a0b9b2">
 <h3>California Almonds</h3>
 <p>₹149</p>
+<a href="almonds.html">View Product</a>
 <button onclick="addToCart('Almonds',149)">Add to Cart</button>
-<a href="almonds.html">View</a>
 </div>
 
 <div class="product">
+<img src="https://images.unsplash.com/photo-1590086782792-42dd2350140d">
 <h3>Premium Cashews</h3>
 <p>₹199</p>
+<a href="cashews.html">View Product</a>
 <button onclick="addToCart('Cashews',199)">Add to Cart</button>
-<a href="cashews.html">View</a>
 </div>
 
 <div class="product">
-<h3>SoFiss Mix</h3>
+<img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32">
+<h3>Dry Fruit Mix</h3>
 <p>₹99</p>
+<a href="mix.html">View Product</a>
 <button onclick="addToCart('Mix',99)">Add to Cart</button>
-<a href="mix.html">View</a>
 </div>
 
 </section>
