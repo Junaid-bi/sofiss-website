@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Products | SoFiss</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1 class="logo">SoFiss</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+</nav>
+
+</header>
+
+<section class="products">
+
+<h2>Our Collection</h2>
+
+<div class="product">
+<h3>California Almonds</h3>
+<p>₹149</p>
+<button onclick="addToCart('Almonds',149)">Add to Cart</button>
+<a href="almonds.html">View</a>
+</div>
+
+<div class="product">
+<h3>Premium Cashews</h3>
+<p>₹199</p>
+<button onclick="addToCart('Cashews',199)">Add to Cart</button>
+<a href="cashews.html">View</a>
+</div>
+
+<div class="product">
+<h3>SoFiss Mix</h3>
+<p>₹99</p>
+<button onclick="addToCart('Mix',99)">Add to Cart</button>
+<a href="mix.html">View</a>
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

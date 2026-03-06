@@ -1,504 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SoFiss | Nourish The Goodness</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
-}
-
-body{
-background:#fafafa;
-color:#222;
-}
-
-/* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 60px;
-background:white;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
-position:sticky;
-top:0;
-}
-
-.logo{
-font-size:26px;
-font-weight:600;
-color:#14532d;
-}
-
-nav a{
-margin:0 15px;
-text-decoration:none;
-color:#333;
-cursor:pointer;
-}
-
-.cart{
-cursor:pointer;
-font-weight:600;
-}
-
-/* HERO */
-
-.hero{
-height:55vh;
-background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-url("https://images.unsplash.com/photo-1604908176997-4317a8c7d0cb");
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-text-align:center;
-}
-
-.hero h1{
-font-size:55px;
-}
-
-/* PRODUCTS */
-
-.products{
-padding:80px 60px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:40px;
-}
-
-.card{
-background:white;
-border-radius:15px;
-padding:20px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.card img{
-width:100%;
-border-radius:12px;
-}
-
-.price{
-font-size:20px;
-margin:10px 0;
-font-weight:600;
-color:#14532d;
-}
-
-button{
-background:#14532d;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-background:#0e3f22;
-}
-
-/* CART */
-
-.cart-panel{
-position:fixed;
-right:-360px;
-top:0;
-width:360px;
-height:100%;
-background:white;
-padding:30px;
-box-shadow:-5px 0 20px rgba(0,0,0,0.1);
-transition:0.4s;
-overflow:auto;
-}
-
-.cart-panel.active{
-right:0;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin:15px 0;
-}
-
-.total{
-margin-top:20px;
-font-weight:600;
-}
-
-/* CHECKOUT */
-
-.checkout{
-display:none;
-padding:60px;
-background:white;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:6px;
-border:1px solid #ddd;
-}
-
-/* ORDER TRACKING */
-
-.track{
-display:none;
-padding:60px;
-background:white;
-}
-
-.status{
-padding:10px;
-background:#eee;
-border-radius:6px;
-margin-top:10px;
-}
-
-/* ADMIN */
-
-.admin{
-display:none;
-padding:60px;
-}
-
-.order-card{
-background:white;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
-}
-
-footer{
-background:#14532d;
-color:white;
-padding:40px;
-text-align:center;
-margin-top:60px;
-}
-
-</style>
-
+<title>SoFiss | Luxury Dry Fruits</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
 <header>
 
-<div class="logo">SoFiss</div>
+<h1 class="logo">SoFiss</h1>
 
 <nav>
-<a onclick="showHome()">Home</a>
-<a onclick="showTrack()">Track Order</a>
-<a onclick="showAdmin()">Admin</a>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
 </nav>
-
-<div class="cart" onclick="toggleCart()">
-Cart (<span id="cart-count">0</span>)
-</div>
 
 </header>
 
+<section class="hero">
 
-<section class="hero" id="hero">
+<h2>Nourish The Goodness</h2>
+<p>Premium Dry Fruits From Kashmir</p>
 
-<div>
-<h1>SoFiss</h1>
-<p>Nourish The Goodness</p>
-</div>
+<a href="products.html" class="btn">Shop Now</a>
 
 </section>
 
+<section class="home-products">
 
-<section class="products" id="products">
+<h2>Our Premium Products</h2>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1508747703725-719777637510">
+<div class="product">
 <h3>California Almonds</h3>
-<div class="price">₹149</div>
-<button onclick="addToCart('Almonds',149)">Add to Cart</button>
+<p>Crunchy premium almonds</p>
+<a href="almonds.html" class="btn">View</a>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1615486363976-54a61d5bb0f7">
+<div class="product">
 <h3>Premium Cashews</h3>
-<div class="price">₹199</div>
-<button onclick="addToCart('Cashews',199)">Add to Cart</button>
+<p>Handpicked cashews</p>
+<a href="cashews.html" class="btn">View</a>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7">
-<h3>Energy Mix</h3>
-<div class="price">₹99</div>
-<button onclick="addToCart('Mix Fruit',99)">Add to Cart</button>
+<div class="product">
+<h3>SoFiss Mix</h3>
+<p>Energy mix</p>
+<a href="mix.html" class="btn">View</a>
 </div>
 
 </section>
 
-
-<div class="cart-panel" id="cartPanel">
-
-<h2>Your Cart</h2>
-
-<div id="cartItems"></div>
-
-<div class="total">
-Total ₹<span id="total">0</span>
-</div>
-
-<button onclick="openCheckout()">Checkout</button>
-
-</div>
-
-
-<section class="checkout" id="checkout">
-
-<h2>Checkout</h2>
-
-<div id="orderSummary"></div>
-
-<input id="name" placeholder="Full Name">
-<input id="phone" placeholder="Phone">
-<input id="email" placeholder="Email">
-<textarea id="address" placeholder="Delivery Address"></textarea>
-
-<button onclick="placeOrder()">Place Order</button>
-
-</section>
-
-
-<section class="track" id="track">
-
-<h2>Track Your Order</h2>
-
-<input id="trackPhone" placeholder="Enter Phone Number">
-
-<button onclick="trackOrder()">Track</button>
-
-<div id="trackResult"></div>
-
-</section>
-
-
-<section class="admin" id="adminPanel">
-
-<h2>Admin Dashboard</h2>
-
-<div id="orders"></div>
-
-</section>
-
-
-<footer>
-
-<p>© 2026 SoFiss Premium Dry Fruits</p>
-
-</footer>
-
-
-<script>
-
-let cart=[]
-let total=0
-let count=0
-
-function addToCart(name,price){
-
-cart.push({name,price})
-
-count++
-total+=price
-
-document.getElementById("cart-count").innerText=count
-document.getElementById("total").innerText=total
-
-renderCart()
-
-}
-
-function renderCart(){
-
-let items=document.getElementById("cartItems")
-
-items.innerHTML=""
-
-cart.forEach((item,i)=>{
-
-items.innerHTML+=`
-<div class="cart-item">
-${item.name} ₹${item.price}
-<button onclick="removeItem(${i})">X</button>
-</div>
-`
-
-})
-
-}
-
-function removeItem(i){
-
-total-=cart[i].price
-cart.splice(i,1)
-count--
-
-document.getElementById("cart-count").innerText=count
-document.getElementById("total").innerText=total
-
-renderCart()
-
-}
-
-function toggleCart(){
-
-document.getElementById("cartPanel").classList.toggle("active")
-
-}
-
-function openCheckout(){
-
-document.getElementById("checkout").style.display="block"
-
-let summary=""
-
-cart.forEach(item=>{
-summary+=`<p>${item.name} - ₹${item.price}</p>`
-})
-
-document.getElementById("orderSummary").innerHTML=summary
-
-}
-
-function placeOrder(){
-
-let orderID="SF"+Math.floor(Math.random()*100000)
-
-let order={
-id:orderID,
-name:document.getElementById("name").value,
-phone:document.getElementById("phone").value,
-address:document.getElementById("address").value,
-items:cart,
-total:total,
-status:"Pending"
-}
-
-let orders=JSON.parse(localStorage.getItem("orders")) || []
-
-orders.push(order)
-
-localStorage.setItem("orders",JSON.stringify(orders))
-
-alert("Order Placed! Order ID: "+orderID)
-
-cart=[]
-total=0
-count=0
-
-document.getElementById("cart-count").innerText=0
-document.getElementById("total").innerText=0
-
-renderCart()
-
-}
-
-function showTrack(){
-
-document.getElementById("track").style.display="block"
-
-}
-
-function trackOrder(){
-
-let phone=document.getElementById("trackPhone").value
-
-let orders=JSON.parse(localStorage.getItem("orders")) || []
-
-let result=""
-
-orders.forEach(o=>{
-
-if(o.phone===phone){
-
-result+=`
-
-<div class="status">
-
-Order ${o.id} - ${o.status} <br>
-Total ₹${o.total}
-
-</div>
-
-`
-
-}
-
-})
-
-document.getElementById("trackResult").innerHTML=result || "No orders found"
-
-}
-
-function showAdmin(){
-
-document.getElementById("adminPanel").style.display="block"
-
-let orders=JSON.parse(localStorage.getItem("orders")) || []
-
-let html=""
-
-orders.forEach(o=>{
-
-html+=`
-
-<div class="order-card">
-
-<h3>Order ${o.id}</h3>
-
-<p>Name: ${o.name}</p>
-
-<p>Phone: ${o.phone}</p>
-
-<p>Total: ₹${o.total}</p>
-
-<p>Status: ${o.status}</p>
-
-</div>
-
-`
-
-})
-
-document.getElementById("orders").innerHTML=html
-
-}
-
-</script>
-
+<script src="script.js"></script>
 
 </body>
 </html>
