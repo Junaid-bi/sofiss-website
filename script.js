@@ -17,7 +17,9 @@ function updateCartCount(){
 let count=document.getElementById("cart-count")
 
 if(count){
+
 count.innerText=cart.length
+
 }
 
 }
@@ -69,5 +71,21 @@ localStorage.setItem("cart",JSON.stringify(cart))
 displayCart()
 
 updateCartCount()
+
+}
+
+function checkoutWhatsApp(){
+
+let message="Order from SoFiss:%0A"
+
+cart.forEach(item=>{
+
+message+=item.name+" - ₹"+item.price+"%0A"
+
+})
+
+let phone="917780892946"
+
+window.open(`https://wa.me/${phone}?text=${message}`)
 
 }
