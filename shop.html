@@ -1,82 +1,65 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop | SoFiss</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-
 <header>
-
-<h1>SoFiss</h1>
-
-<nav>
-
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-
-</nav>
-
+  <h1 class="logo">SoFiss</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
 </header>
-
 
 <h2 class="title">Premium Collection</h2>
 
-
-<div class="products">
-
-
-<div class="product">
-
-<img src="images/almonds.jpg" loading="lazy">
-
-<h3>California Almonds</h3>
-
-<p>₹149</p>
-
-<button onclick="addToCart('Almonds',149)">Add To Cart</button>
-
+<div class="search-bar">
+  <input type="text" id="search" placeholder="Search dry fruits..." onkeyup="searchProducts()">
 </div>
 
+<div class="products" id="product-list">
+  <div class="product">
+    <img src="images/almonds.jpg" alt="California Almonds" loading="lazy">
+    <h3>California Almonds</h3>
+    <p>₹149</p>
+    <div class="product-actions">
+      <a href="almonds.html">View Product</a>
+      <button onclick="addToCart('Almonds',149)">Add To Cart</button>
+    </div>
+  </div>
 
-<div class="product">
+  <div class="product">
+    <img src="images/cashews.jpg" alt="Premium Cashews" loading="lazy">
+    <h3>Premium Cashews</h3>
+    <p>₹199</p>
+    <div class="product-actions">
+      <a href="cashews.html">View Product</a>
+      <button onclick="addToCart('Cashews',199)">Add To Cart</button>
+    </div>
+  </div>
 
-<img src="images/cashews.jpg" loading="lazy">
-
-<h3>Cashews</h3>
-
-<p>₹199</p>
-
-<button onclick="addToCart('Cashews',199)">Add To Cart</button>
-
+  <div class="product">
+    <img src="images/mix.jpg" alt="Mix Dry Fruits" loading="lazy">
+    <h3>SoFiss Energy Mix</h3>
+    <p>₹99</p>
+    <div class="product-actions">
+      <a href="mix.html">View Product</a>
+      <button onclick="addToCart('Mix Dry Fruits',99)">Add To Cart</button>
+    </div>
+  </div>
 </div>
 
-
-<div class="product">
-
-<img src="images/mix.jpg" loading="lazy">
-
-<h3>Mix Dry Fruits</h3>
-
-<p>₹99</p>
-
-<button onclick="addToCart('Mix Dry Fruits',99)">Add To Cart</button>
-
-</div>
-
-
-</div>
-
+<footer>
+  <p>Fast delivery across India • Secure and fresh packaging</p>
+</footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
-
-

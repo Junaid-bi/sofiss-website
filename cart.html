@@ -1,46 +1,32 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart | SoFiss</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-
 <header>
-
-<h1>SoFiss</h1>
-
-<nav>
-
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="cart.html">Cart</a>
-
-</nav>
-
+  <h1 class="logo">SoFiss</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
 </header>
 
-
-<h2 class="title">Your Cart</h2>
-
-
-<div id="cart-items"></div>
-
-<h3 id="total"></h3>
-
-<button onclick="checkoutWhatsApp()" class="btn">
-
-Order on WhatsApp
-
-</button>
-
+<section class="cart-container">
+  <h2 class="title">Your Cart</h2>
+  <div id="cart-items"></div>
+  <h3 id="total"></h3>
+  <div class="cart-actions">
+    <a href="shop.html"><button class="btn btn-secondary">Continue Shopping</button></a>
+    <button onclick="goToCheckout()" class="btn">Proceed to Checkout</button>
+  </div>
+</section>
 
 <script src="script.js"></script>
-
 </body>
 </html>

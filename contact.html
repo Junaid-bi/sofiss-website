@@ -1,53 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact SoFiss</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header>
-
-<h1 class="logo">SoFiss</h1>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-</nav>
-
+  <h1 class="logo">SoFiss</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
 </header>
 
-<section class="contact">
+<section class="info-page">
+  <h2>Contact Us</h2>
+  <p><strong>Email:</strong> sofissdryfruits@gmail.com</p>
+  <p><strong>Phone:</strong> +91 77808 92946</p>
+  <p><strong>Location:</strong> Kashmir, India</p>
 
-<h2>Contact Us</h2>
-
-<p>Email: sofissdryfruits@gmail.com</p>
-
-<p>Phone: +91 XXXXX XXXXX</p>
-
-<p>Location: Kashmir, India</p>
-
-<h3>Send us a message</h3>
-
-<form>
-
-<input type="text" placeholder="Your Name"><br><br>
-
-<input type="email" placeholder="Your Email"><br><br>
-
-<textarea placeholder="Your Message"></textarea><br><br>
-
-<button type="submit">Send</button>
-
-</form>
-
+  <h3 class="form-title">Send us a message</h3>
+  <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! We will contact you soon.');">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
 </section>
 
-<script src="script.js"></script>
+<footer>
+  <p>For urgent orders, use cart checkout and place directly on WhatsApp.</p>
+</footer>
 
+<script src="script.js"></script>
 </body>
 </html>
